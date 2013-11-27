@@ -46,13 +46,13 @@ moveBall game =
         brickSize = (brickWidth, brickHeight)
         (hit, notHit) = partition (ballClashRect p' brickSize . fst) $ bricks game
 
-        canReflectFrom = windowSides ++ (map (\brick -> (fst brick, brickSize)) hit)
+        paddleSize = (paddleWidth, paddleHeight)
+        canReflectFrom = (fst $ paddle game, paddleSize):windowSides
+            ++ (map (\brick -> (fst brick, brickSize)) hit)
         clashes = catMaybes $ map (circleAndRectClashing (p', ballRadius)) canReflectFrom
 
         dx' = if Horizontal `elem` clashes then -dx else dx
         dy' = if Vertical `elem` clashes then -dy else dy
-        -- dx' = if x - ballRadius <= left || x + ballRadius >= right then -dx else dx
-        -- dy' = if y - ballRadius <= bottom || y + ballRadius >= top then -dy else dy
     in  ((p', (dx', dy')), notHit)
 
 ballClashRect ballPos size rectPos =
