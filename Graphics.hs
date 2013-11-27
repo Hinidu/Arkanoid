@@ -7,7 +7,7 @@ import Consts
 import Geometry
 
 normalize :: GLfloat -> GLfloat
-normalize = (subtract $ paneSize / 2) . (* paneSize)
+normalize = subtract (paneSize / 2) . (* paneSize)
 
 top = normalize 1
 middle = normalize 0.5
@@ -31,4 +31,4 @@ instance (Random a, Num a) => Random (Color4 a) where
             (b, gen3) = randomR (b1, b2) gen2
             (a, gen4) = randomR (a1, a2) gen3
         in  (Color4 r g b a, gen4)
-    random gen = randomR (Color4 0 0 0 0, Color4 1 1 1 1) gen
+    random = randomR (Color4 0 0 0 0, Color4 1 1 1 1)

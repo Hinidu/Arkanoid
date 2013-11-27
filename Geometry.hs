@@ -1,8 +1,6 @@
 module Geometry where
 
-import Graphics.UI.GLUT (GLfloat(..))
-
-import Consts
+import Graphics.UI.GLUT (GLfloat)
 
 type Point = (GLfloat, GLfloat)
 
@@ -32,6 +30,7 @@ mirrorX (vx, vy) = (-vx, vy)
 mirrorY :: Vector -> Vector
 mirrorY (vx, vy) = (vx, -vy)
 
+isBetween :: Ord a => a -> a -> a -> Bool
 isBetween a b x = a <= x && x <= b
 
 hasRectPoint :: Rect -> Point -> Bool

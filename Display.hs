@@ -17,14 +17,14 @@ display gameRef = do
     swapBuffers
 
 displayRect :: Point -> Point -> Color4 GLfloat -> IO ()
-displayRect (width, height) (x, y) color = do
-    currentColor $= color
+displayRect (width, height) (x, y) col = do
+    currentColor $= col
     renderPrimitive Quads $ mapM_ makeVertex
         [(x, y), (x + width, y), (x + width, y + height), (x, y + height)]
 
 displayCircle :: GLfloat -> Point -> Color4 GLfloat -> IO ()
-displayCircle r (x0, y0) color = do
-    currentColor $= color
+displayCircle r (x0, y0) col = do
+    currentColor $= col
     renderPrimitive Polygon $
         mapM_ (\(x, y) -> makeVertex (x0 + r * x, y0 + r * y)) circlePoints
 

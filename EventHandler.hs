@@ -1,6 +1,6 @@
 module EventHandler where
 
-import Control.Monad (when)
+import Control.Monad (unless)
 import Data.IORef
 import Graphics.UI.GLUT
 
@@ -26,7 +26,7 @@ keyboardHandle pressedKeysRef gameRef key updown _ _ = do
                     SpecialKey KeyLeft  -> changePaddleSpeed paddleSpeed
                     SpecialKey KeyRight -> changePaddleSpeed (-paddleSpeed)
                     _                   -> return ()
-        Down -> when (not $ key `elem` pressedKeys) $ do
+        Down -> unless (key `elem` pressedKeys) $ do
                 pressedKeysRef $= key:pressedKeys
                 case key of
                     SpecialKey KeyLeft  -> changePaddleSpeed (-paddleSpeed)

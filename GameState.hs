@@ -1,10 +1,10 @@
 module GameState where
 
-import System.Random (StdGen(..), randoms)
-import Data.IORef (IORef(..))
+import System.Random (StdGen, randoms)
+import Data.IORef (IORef)
 import Data.List (partition)
-import Data.Maybe (catMaybes)
-import Graphics.UI.GLUT (Color4(..), GLfloat(..), ($=), get, postRedisplay)
+import Data.Maybe (isJust, mapMaybe)
+import Graphics.UI.GLUT (Color4(..), GLfloat, ($=), get, postRedisplay)
 
 import Consts
 import Geometry
@@ -41,22 +41,23 @@ update gameRef = do
 moveBall :: GameState -> (MovingObject, [Brick])
 moveBall game =
     let (p, v@(dx, dy)) = ball game
-        p'@(x, y) = movePoint v p
+        p' = movePoint v p
 
         brickSize = (brickWidth, brickHeight)
         (hit, notHit) = partition (ballClashRect p' brickSize . fst) $ bricks game
 
         paddleSize = (paddleWidth, paddleHeight)
         canReflectFrom = [(fst $ paddle game, paddleSize), topSide, leftSide, rightSide]
-            ++ map (\brick -> (fst brick, brickSize)) hit
-        clashes = catMaybes $ map (circleAndRectClashing (p', ballRadius)) canReflectFrom
+            ++ map (flip (,) brickSize . fst) hit
+        clashes = mapMaybe (circleAndRectClashing (p', ballRadius)) canReflectFrom
 
         dx' = if Horizontal `elem` clashes then -dx else dx
         dy' = if Vertical `elem` clashes then -dy else dy
     in  ((p', (dx', dy')), notHit)
 
+ballClashRect :: Point -> Size -> Point -> Bool
 ballClashRect ballPos size rectPos =
-    circleAndRectClashing (ballPos, ballRadius) (rectPos, size) /= Nothing
+    isJust $ circleAndRectClashing (ballPos, ballRadius) (rectPos, size)
 
 movePaddle :: GameState -> MovingObject
 movePaddle game =
