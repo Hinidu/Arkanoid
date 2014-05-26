@@ -2,7 +2,6 @@ module EventNetwork where
 
 import System.Random
 
-import Graphics.UI.SDL as SDL
 import Reactive.Banana
 import Reactive.Banana.SDL
 import Reactive.Banana.SDL.Graphics
@@ -18,18 +17,8 @@ setupNetwork es gd = do
     rndGen <- liftIO getStdGen
     eTickDiff <- tickDiffEvent es
     esdl <- sdlEvent es
-    let
-        -- Initial GameState
-        gsInitial = GS.initGame rndGen
-
-        -- We always use the same screen
+    let gsInitial = GS.initGame rndGen
         bScreen = pure $ gdScreen gd
-
-        -- GameState update event
         eGSChange = (GS.update <$> eTickDiff) `union` keyboardHandle esdl
-
-        -- GameState behavior
         bGameState = accumB gsInitial eGSChange
-    liftIO $ print $ paddle gsInitial
     renderGraph (display <$> bGameState) bScreen
-    return ()
