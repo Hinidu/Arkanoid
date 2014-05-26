@@ -1,31 +1,45 @@
 module Consts where
 
-import Graphics.UI.GLUT
+import Graphics.UI.SDL as SDL
 
-paneSize :: GLfloat
-paneSize = 2.0
+import Geometry.Types
+import Graphics.Colors
+import Util
 
-ballRadius = 0.03 * paneSize
+width, height :: Int
+width = 480
+height = 480
 
-ballSpeed = 0.005 * paneSize
+ballRadius :: Float
+ballRadius = 0.03
 
-ballColor :: Color4 GLfloat
-ballColor = Color4 1 1 1 1
+ballSpeed :: Float
+ballSpeed = 0.005
 
-paddleHeight = 0.03 * paneSize
-paddleWidth = 0.1 * paneSize
+ballColor :: SDL.Color
+ballColor = white
 
-paddleSpeed = 0.005 * paneSize
+paddleWidth, paddleHeight :: Float
+paddleWidth = 0.1
+paddleHeight = 0.03
 
-paddleColor :: Color4 GLfloat
-paddleColor = Color4 1 0 0 1
+paddleSize :: Size
+paddleSize = (paddleWidth, paddleHeight)
 
-allBricksHeight = 0.5 * paneSize
+paddleSpeed :: Float
+paddleSpeed = 0.005
 
-brickRows :: Int
+paddleColor :: SDL.Color
+paddleColor = red
+
+allBricksHeight :: Float
+allBricksHeight = 0.5
+
+brickRows, brickCols :: Int
 brickRows = 6
-brickCols :: Int
 brickCols = 12
 
-brickHeight = allBricksHeight / fromIntegral brickRows
-brickWidth = paneSize / fromIntegral brickCols
+brickSize :: Size
+brickSize =
+    zipPairWith (/) (1.0, allBricksHeight)
+        $ mapPair fromIntegral (brickCols, brickRows)

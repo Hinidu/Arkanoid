@@ -1,21 +1,10 @@
 module Geometry where
 
-import Graphics.UI.GLUT (GLfloat)
+import qualified Graphics.UI.SDL as SDL (Rect(..))
 
-type Point = (GLfloat, GLfloat)
+import Geometry.Types
 
-type Vector = (GLfloat, GLfloat)
-
-type Circle = (Point, GLfloat)
-
-type Size = (GLfloat, GLfloat)
-
-type Rect = (Point, Size)
-
-data Clash = Horizontal | Vertical
-    deriving (Eq)
-
-infinity :: GLfloat
+infinity :: Float
 infinity = 1.0e9
 
 movePoint :: Vector -> Point -> Point
@@ -32,6 +21,9 @@ mirrorY (vx, vy) = (vx, -vy)
 
 isBetween :: Ord a => a -> a -> a -> Bool
 isBetween a b x = a <= x && x <= b
+
+makeRect :: Point -> Size -> SDL.Rect
+makeRect (x, y) (w, h) = SDL.Rect (truncate x) (truncate y) (truncate w) (truncate h)
 
 hasRectPoint :: Rect -> Point -> Bool
 hasRectPoint ((rx, ry), (w, h)) (x, y) =
