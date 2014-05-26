@@ -20,7 +20,7 @@ main = do
     gd <- initGraphics
     network <- compile $ setupNetwork sdlES gd
     actuate network
-    runSDLPump sdlES
+    runCappedSDLPump 60 sdlES
     SDL.quit
 
     -- (progName, _) <- getArgsAndInitialize
