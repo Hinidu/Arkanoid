@@ -58,9 +58,8 @@ ballClashRect ballPos size rectPos =
 
 movePaddle :: GameState -> MovingObject
 movePaddle game =
-    -- let (p, v) = paddle game
-    --     (x, y) = movePoint v p
-    --     x' = max left $ min x $ right - paddleWidth
-    --     y' = max bottom $ min top y
-    -- in  ((x', y'), v)
-    paddle game
+    let (p, v) = paddle game
+        (x, y) = movePoint v p
+        x' = max left $ min x $ right - paddleWidth
+        y' = max top $ min bottom y
+    in  ((x', y'), v)
