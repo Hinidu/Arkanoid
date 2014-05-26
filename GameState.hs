@@ -1,6 +1,8 @@
+{-# LANGUAGE NamedFieldPuns  #-}
 module GameState where
 
 import System.Random (StdGen, randoms)
+import Control.Arrow (first, second)
 import Data.List (partition)
 import Data.Maybe (isJust, mapMaybe)
 import Data.Word (Word32)
@@ -63,3 +65,7 @@ movePaddle game =
         x' = max left $ min x $ right - paddleWidth
         y' = max top $ min bottom y
     in  ((x', y'), v)
+
+changePaddleSpeed :: GameState -> Float -> GameState
+changePaddleSpeed gs@GameState{paddle} d =
+    gs { paddle = (second . first) (+d) paddle }

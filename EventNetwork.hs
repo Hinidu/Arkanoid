@@ -9,6 +9,7 @@ import Reactive.Banana.SDL.Graphics
 import Reactive.Banana.Frameworks
 
 import Display
+import EventHandler
 import GameState as GS
 import Graphics
 
@@ -25,7 +26,7 @@ setupNetwork es gd = do
         bScreen = pure $ gdScreen gd
 
         -- GameState update event
-        eGSChange = (GS.update <$> eTickDiff) --`union` (updateGSOnKey <$> keyDownEvent esdl)
+        eGSChange = (GS.update <$> eTickDiff) `union` keyboardHandle esdl
 
         -- GameState behavior
         bGameState = accumB gsInitial eGSChange
