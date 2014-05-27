@@ -14,7 +14,7 @@ ballRadius :: Float
 ballRadius = 0.03
 
 ballSpeed :: Float
-ballSpeed = 0.005
+ballSpeed = 0.007
 
 ballColor :: SDL.Color
 ballColor = white
@@ -27,7 +27,7 @@ paddleSize :: Size
 paddleSize = (paddleWidth, paddleHeight)
 
 paddleSpeed :: Float
-paddleSpeed = 0.005
+paddleSpeed = 0.008
 
 paddleColor :: SDL.Color
 paddleColor = red
