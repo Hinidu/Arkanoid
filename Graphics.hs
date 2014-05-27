@@ -38,10 +38,10 @@ middle = 0.5
 bottom = 1.0
 left = 0.0
 
-topSide = ((left, top), (right - left, 1.0))
-bottomSide = ((left, bottom - 1.0), (right - left, 1.0))
-leftSide = ((left - 1.0, bottom), (1.0, bottom - top))
-rightSide = ((right, bottom), (1.0, bottom - top))
+topSide = ((left, top - 1.0), (right - left, 1.0))
+bottomSide = ((left, bottom), (right - left, 1.0))
+leftSide = ((left - 1.0, top), (1.0, bottom - top))
+rightSide = ((right, top), (1.0, bottom - top))
 windowSides = [topSide, bottomSide, leftSide, rightSide]
 
 inWindow :: Point -> Bool
