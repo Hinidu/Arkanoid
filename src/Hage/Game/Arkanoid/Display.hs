@@ -34,6 +34,11 @@ displayRect rect col =
 instance Draw Circle SDL.Color where
     draw (p, r) color = Graphic $ \scr ->
         let (x, y) = worldToScreen p
-            pixel = (SDL.mapRGB . SDL.surfaceGetPixelFormat) scr (SDL.colorRed color) (SDL.colorGreen color) (SDL.colorBlue color)
+            pixel = (SDL.mapRGB . SDL.surfaceGetPixelFormat) scr 
+                    (SDL.colorRed color)
+                    (SDL.colorGreen color)
+                    (SDL.colorBlue color)
             r' = truncate $ fromIntegral height * r
-        in  pixel >>= \c -> SDL.filledCircle scr (fromIntegral x) (fromIntegral y) r' c >> return Nothing
+        in  do c <- pixel
+               SDL.filledCircle scr (fromIntegral x) (fromIntegral y) r' c
+               return Nothing
