@@ -1,0 +1,26 @@
+name:                Arkanoid
+version:             0.1.0.0
+synopsis:            Haskell implementation of famous arkanoid game.
+homepage:            https://github.com/Hinidu/Arkanoid
+license:             MIT
+license-file:        LICENSE
+author:              Pavel Platto
+maintainer:          hinidu@gmail.com
+category:            Game
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable Arkanoid
+  main-is:             Hage/Game/Arkanoid.hs
+  other-extensions:    FlexibleInstances,
+                       MultiParamTypeClasses,
+                       TypeSynonymInstances,
+                       NamedFieldPuns
+  build-depends:       base >=4.6 && <4.7,
+                       random >=1.0 && <1.1,
+                       SDL >=0.6 && <0.7,
+                       reactive-banana-sdl >=0.2 && <0.3,
+                       reactive-banana >=0.8 && <0.9,
+                       SDL-gfx >=0.6 && <0.7
+  hs-source-dirs:      src
+  default-language:    Haskell2010

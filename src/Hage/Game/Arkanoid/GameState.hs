@@ -1,5 +1,5 @@
 {-# LANGUAGE NamedFieldPuns  #-}
-module GameState where
+module Hage.Game.Arkanoid.GameState where
 
 import System.Random (StdGen, randoms)
 import Control.Arrow (first, second)
@@ -8,10 +8,10 @@ import Data.Maybe (isJust, mapMaybe)
 import Data.Word (Word32)
 import Graphics.UI.SDL as SDL (Color(..))
 
-import Consts
-import Geometry
-import Geometry.Types
-import Graphics
+import Hage.Game.Arkanoid.Consts
+import Hage.Geometry
+import Hage.Geometry.Types
+import Hage.Graphics
 
 type Brick = (Point, SDL.Color)
 

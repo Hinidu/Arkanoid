@@ -1,8 +1,8 @@
-module Geometry where
+module Hage.Geometry where
 
 import qualified Graphics.UI.SDL as SDL (Rect(..))
 
-import Geometry.Types
+import Hage.Geometry.Types
 
 infinity :: Float
 infinity = 1.0e9

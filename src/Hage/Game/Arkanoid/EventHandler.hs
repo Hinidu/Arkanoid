@@ -1,13 +1,13 @@
 {-# LANGUAGE NamedFieldPuns  #-}
-module EventHandler where
+module Hage.Game.Arkanoid.EventHandler where
 
 import Control.Arrow
 import qualified Graphics.UI.SDL as SDL
 import Reactive.Banana
 import Reactive.Banana.SDL
 
-import Consts
-import GameState
+import Hage.Game.Arkanoid.Consts
+import Hage.Game.Arkanoid.GameState
 
 keyboardHandle :: WrappedEvent t -> Event t (GameState -> GameState)
 keyboardHandle esdl =

@@ -1,10 +1,10 @@
-module Consts where
+module Hage.Game.Arkanoid.Consts where
 
 import Graphics.UI.SDL as SDL
 
-import Geometry.Types
-import Graphics.Colors
-import Util
+import Hage.Geometry.Types
+import Hage.Graphics.Colors
+import Hage.Util
 
 width, height :: Int
 width = 480

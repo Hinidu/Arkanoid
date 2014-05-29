@@ -1,4 +1,4 @@
-module Graphics.Colors where
+module Hage.Graphics.Colors where
 
 import Graphics.UI.SDL
 

@@ -1,4 +1,4 @@
-module Util where
+module Hage.Util where
 
 import Control.Arrow
 import Control.Monad

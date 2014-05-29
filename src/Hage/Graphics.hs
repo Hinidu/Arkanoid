@@ -1,12 +1,12 @@
-module Graphics where
+module Hage.Graphics where
 
 import System.Random
 import Graphics.UI.SDL as SDL
 import Reactive.Banana.SDL.Graphics
 
-import Consts
-import Geometry.Types
-import Util
+import Hage.Game.Arkanoid.Consts
+import Hage.Geometry.Types
+import Hage.Util
 
 newtype GraphicsData = GraphicsData { gdScreen :: Screen }
 

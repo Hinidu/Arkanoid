@@ -5,8 +5,8 @@ import Reactive.Banana
 import Reactive.Banana.Frameworks (actuate)
 import Reactive.Banana.SDL
 
-import EventNetwork
-import Graphics
+import Hage.Graphics
+import Hage.Game.Arkanoid.EventNetwork
 
 main :: IO ()
 main = do

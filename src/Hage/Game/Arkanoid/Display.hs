@@ -1,17 +1,17 @@
 {-# LANGUAGE FlexibleInstances, MultiParamTypeClasses, TypeSynonymInstances #-}
-module Display where
+module Hage.Game.Arkanoid.Display where
 
 import Control.Arrow
 import qualified Graphics.UI.SDL as SDL
 import qualified Graphics.UI.SDL.Primitives as SDL
 import Reactive.Banana.SDL.Graphics
 
-import Consts
-import Geometry.Types
-import Graphics
-import Graphics.Colors
-import GameState
-import Util
+import Hage.Game.Arkanoid.Consts
+import Hage.Game.Arkanoid.GameState
+import Hage.Geometry.Types
+import Hage.Graphics
+import Hage.Graphics.Colors
+import Hage.Util
 
 display :: GameState -> Graphic
 display game =

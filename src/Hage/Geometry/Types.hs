@@ -1,4 +1,4 @@
-module Geometry.Types where
+module Hage.Geometry.Types where
 
 type Point = (Float, Float)
 
